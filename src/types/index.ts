@@ -2,7 +2,7 @@ export type ValidationMode = 'strict' | 'standard' | 'permissive';
 
 export interface ValidationOptions {
   mode?: ValidationMode;
-  
+
   specialChars?: {
     allowSlash?: boolean;
     allowColon?: boolean;
@@ -11,14 +11,14 @@ export interface ValidationOptions {
     allowAmpersand?: boolean;
     allowDollar?: boolean;
   };
-  
+
   languages?: {
     allowJapanese?: boolean;
     allowKorean?: boolean;
     allowChinese?: boolean;
     allowCJK?: boolean;
   };
-  
+
   additionalChars?: string[];
   maxLength?: number;
   allowRelativePaths?: boolean;

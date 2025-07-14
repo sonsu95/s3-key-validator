@@ -12,33 +12,39 @@ export function isValidS3Key(key: string, options?: ValidationOptions): boolean 
 
 export function sanitizeS3Key(key: string, options?: ValidationOptions): string {
   let sanitized = key;
-  
+
   sanitized = sanitized.replace(/[\\{}^%`\]">~<#|]/g, '');
-  
+
   sanitized = sanitized.replace(/\/+/g, '/');
-  
+
   sanitized = sanitized.replace(/\/$/, '');
-  
+
   if (sanitized.startsWith('./')) {
     sanitized = sanitized.substring(2);
   }
-  
+
   sanitized = sanitized.replace(/\.\.\//g, '');
-  
+
   if (!options?.specialChars?.allowSpace) {
     sanitized = sanitized.replace(/\s+/g, '-');
   }
-  
+
   if (!options?.specialChars?.allowColon) {
     sanitized = sanitized.replace(/:/g, '-');
   }
-  
+
   if (!options?.specialChars?.allowAt) {
     sanitized = sanitized.replace(/@/g, '-');
   }
-  
+
   return sanitized;
 }
 
-export type { ValidationOptions, ValidationResult, ValidationError, ValidationWarning, ValidationMode } from './types/index.js';
+export type {
+  ValidationOptions,
+  ValidationResult,
+  ValidationError,
+  ValidationWarning,
+  ValidationMode,
+} from './types/index.js';
 export { strictPreset, standardPreset, permissivePreset } from './presets/index.js';

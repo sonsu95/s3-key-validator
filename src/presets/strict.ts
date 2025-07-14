@@ -8,16 +8,16 @@ export const strictPreset: ValidationOptions = {
     allowSpace: false,
     allowAt: false,
     allowAmpersand: false,
-    allowDollar: false
+    allowDollar: false,
   },
   languages: {
     allowJapanese: false,
     allowKorean: false,
     allowChinese: false,
-    allowCJK: false
+    allowCJK: false,
   },
   additionalChars: [],
   maxLength: 1024,
   allowRelativePaths: false,
-  allowDotPrefix: false
+  allowDotPrefix: false,
 };

@@ -1,6 +1,11 @@
 import type { ValidationOptions, ValidationResult } from '../types/index.js';
 import { ValidationResultBuilder } from './result.js';
-import { CharacterValidator, LengthValidator, EncodingValidator, PathValidator } from '../validators/index.js';
+import {
+  CharacterValidator,
+  LengthValidator,
+  EncodingValidator,
+  PathValidator,
+} from '../validators/index.js';
 import { getPreset } from '../presets/index.js';
 
 export class S3KeyValidator {
@@ -34,12 +39,12 @@ export class S3KeyValidator {
         ...options,
         specialChars: {
           ...preset.specialChars,
-          ...options.specialChars
+          ...options.specialChars,
         },
         languages: {
           ...preset.languages,
-          ...options.languages
-        }
+          ...options.languages,
+        },
       };
     }
 
@@ -51,26 +56,26 @@ export class S3KeyValidator {
         allowSpace: false,
         allowAt: false,
         allowAmpersand: false,
-        allowDollar: false
+        allowDollar: false,
       },
       languages: {
         allowJapanese: false,
         allowKorean: false,
         allowChinese: false,
-        allowCJK: false
+        allowCJK: false,
       },
       additionalChars: [],
       maxLength: 1024,
       allowRelativePaths: false,
       allowDotPrefix: false,
-      ...options
+      ...options,
     };
   }
 
   private static addSuggestions(
-    resultBuilder: ValidationResultBuilder, 
-    key: string, 
-    options: ValidationOptions
+    resultBuilder: ValidationResultBuilder,
+    key: string,
+    options: ValidationOptions,
   ): void {
     if (key.includes('//')) {
       resultBuilder.addSuggestion('Remove consecutive slashes (//)');

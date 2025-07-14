@@ -40,21 +40,21 @@ export class ValidationResultBuilder {
       isValid: this.errors.length === 0,
       errors: this.errors,
       warnings: this.warnings.length > 0 ? this.warnings : undefined,
-      suggestions: this.suggestions.length > 0 ? this.suggestions : undefined
+      suggestions: this.suggestions.length > 0 ? this.suggestions : undefined,
     };
   }
 
   static createValid(): ValidationResult {
     return {
       isValid: true,
-      errors: []
+      errors: [],
     };
   }
 
   static createInvalid(errors: ValidationError[]): ValidationResult {
     return {
       isValid: false,
-      errors
+      errors,
     };
   }
 }

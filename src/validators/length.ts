@@ -10,7 +10,7 @@ export class LengthValidator {
     if (key.length === 0) {
       errors.push({
         type: 'LENGTH',
-        message: 'Key cannot be empty'
+        message: 'Key cannot be empty',
       });
       return errors;
     }
@@ -19,7 +19,7 @@ export class LengthValidator {
     if (byteLength > maxLength) {
       errors.push({
         type: 'LENGTH',
-        message: `Key exceeds maximum length of ${maxLength} bytes (current: ${byteLength} bytes)`
+        message: `Key exceeds maximum length of ${maxLength} bytes (current: ${byteLength} bytes)`,
       });
     }
 

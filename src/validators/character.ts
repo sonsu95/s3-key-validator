@@ -1,32 +1,35 @@
 import type { ValidationOptions, ValidationError, ValidationWarning } from '../types/index.js';
 
 export class CharacterValidator {
-  private static readonly SAFE_CHARS = '0-9a-zA-Z!\\-_.*\'()';
+  private static readonly SAFE_CHARS = "0-9a-zA-Z!\\-_.*'()";
   private static readonly SPECIAL_CHARS = {
     slash: '/',
     colon: ':',
     space: ' ',
     at: '@',
     ampersand: '&',
-    dollar: '$'
+    dollar: '$',
   };
   private static readonly FORBIDDEN_CHARS = '\\\\{}^%`]">~<#|';
-  
+
   private static readonly UNICODE_RANGES = {
-    hiragana: [0x3040, 0x309F],
-    katakana: [0x30A0, 0x30FF],
-    cjkUnified: [0x4E00, 0x9FAF],
-    hangul: [0xAC00, 0xD7AF]
+    hiragana: [0x3040, 0x309f],
+    katakana: [0x30a0, 0x30ff],
+    cjkUnified: [0x4e00, 0x9faf],
+    hangul: [0xac00, 0xd7af],
   };
 
-  static validate(key: string, options: ValidationOptions): { errors: ValidationError[]; warnings: ValidationWarning[] } {
+  static validate(
+    key: string,
+    options: ValidationOptions,
+  ): { errors: ValidationError[]; warnings: ValidationWarning[] } {
     const errors: ValidationError[] = [];
     const warnings: ValidationWarning[] = [];
 
     for (let i = 0; i < key.length; i++) {
       const char = key[i];
       const result = this.validateCharacter(char, i, options);
-      
+
       if (result.error) {
         errors.push(result.error);
       }
@@ -39,9 +42,9 @@ export class CharacterValidator {
   }
 
   private static validateCharacter(
-    char: string, 
-    position: number, 
-    options: ValidationOptions
+    char: string,
+    position: number,
+    options: ValidationOptions,
   ): { error?: ValidationError; warning?: ValidationWarning } {
     const charCode = char.charCodeAt(0);
 
@@ -55,8 +58,8 @@ export class CharacterValidator {
           type: 'CHARACTER',
           message: `Forbidden character '${char}' at position ${position}`,
           position,
-          character: char
-        }
+          character: char,
+        },
       };
     }
 
@@ -68,16 +71,16 @@ export class CharacterValidator {
             type: 'CHARACTER',
             message: `Special character '${char}' not allowed at position ${position}`,
             position,
-            character: char
-          }
+            character: char,
+          },
         };
       }
-      
+
       return {
         warning: {
           type: 'COMPATIBILITY',
-          message: `Special character '${char}' may cause compatibility issues`
-        }
+          message: `Special character '${char}' may cause compatibility issues`,
+        },
       };
     }
 
@@ -89,16 +92,16 @@ export class CharacterValidator {
             type: 'CHARACTER',
             message: `Multi-byte character '${char}' not allowed at position ${position}`,
             position,
-            character: char
-          }
+            character: char,
+          },
         };
       }
-      
+
       return {
         warning: {
           type: 'ENCODING',
-          message: 'Non-ASCII characters may cause compatibility issues'
-        }
+          message: 'Non-ASCII characters may cause compatibility issues',
+        },
       };
     }
 
@@ -111,8 +114,8 @@ export class CharacterValidator {
         type: 'CHARACTER',
         message: `Invalid character '${char}' at position ${position}`,
         position,
-        character: char
-      }
+        character: char,
+      },
     };
   }
 
@@ -130,7 +133,7 @@ export class CharacterValidator {
 
   private static isSpecialCharacterAllowed(char: string, options: ValidationOptions): boolean {
     const specialChars = options.specialChars || {};
-    
+
     switch (char) {
       case this.SPECIAL_CHARS.slash:
         return specialChars.allowSlash || false;
