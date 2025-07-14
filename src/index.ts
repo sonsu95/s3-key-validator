@@ -13,7 +13,7 @@ export function isValidS3Key(key: string, options?: ValidationOptions): boolean 
 export function sanitizeS3Key(key: string, options?: ValidationOptions): string {
   let sanitized = key;
   
-  sanitized = sanitized.replace(/[\\{}^%`]">~<#|]/g, '');
+  sanitized = sanitized.replace(/[\\{}^%`\]">~<#|]/g, '');
   
   sanitized = sanitized.replace(/\/+/g, '/');
   

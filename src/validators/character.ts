@@ -121,7 +121,7 @@ export class CharacterValidator {
   }
 
   private static isForbiddenCharacter(char: string): boolean {
-    return /^[\\{}^%`]">~<#|]$/.test(char);
+    return /^[\\{}^%`\]">~<#|]$/.test(char);
   }
 
   private static isSpecialCharacter(char: string): boolean {

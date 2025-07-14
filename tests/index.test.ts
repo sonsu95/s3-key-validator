@@ -19,8 +19,9 @@ describe('validateS3Key', () => {
     it('should reject forbidden characters', () => {
       const result = validateS3Key('file<name>.txt');
       expect(result.isValid).toBe(false);
-      expect(result.errors).toHaveLength(1);
+      expect(result.errors).toHaveLength(2);
       expect(result.errors[0].type).toBe('CHARACTER');
+      expect(result.errors[1].type).toBe('CHARACTER');
     });
   });
 
