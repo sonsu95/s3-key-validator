@@ -27,6 +27,6 @@ export class LengthValidator {
   }
 
   private static getByteLength(str: string): number {
-    return new TextEncoder().encode(str).length;
+    return new globalThis.TextEncoder().encode(str).length;
   }
 }

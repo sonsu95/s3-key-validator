@@ -11,7 +11,7 @@ export class S3KeyValidator {
     const lengthErrors = LengthValidator.validate(key, resolvedOptions);
     resultBuilder.addErrors(lengthErrors);
 
-    const encodingErrors = EncodingValidator.validate(key, resolvedOptions);
+    const encodingErrors = EncodingValidator.validate(key);
     resultBuilder.addErrors(encodingErrors);
 
     const pathErrors = PathValidator.validate(key, resolvedOptions);
