@@ -47,14 +47,14 @@ describe('validateS3Key', () => {
   describe('special characters', () => {
     it('should allow slash when configured', () => {
       const result = validateS3Key('folder/file.txt', {
-        specialChars: { allowSlash: true }
+        specialChars: { allowSlash: true },
       });
       expect(result.isValid).toBe(true);
     });
 
     it('should reject slash when not configured', () => {
       const result = validateS3Key('folder/file.txt', {
-        specialChars: { allowSlash: false }
+        specialChars: { allowSlash: false },
       });
       expect(result.isValid).toBe(false);
     });
@@ -63,7 +63,7 @@ describe('validateS3Key', () => {
   describe('language support', () => {
     it('should allow Japanese when configured', () => {
       const result = validateS3Key('ファイル名.txt', {
-        languages: { allowJapanese: true }
+        languages: { allowJapanese: true },
       });
       expect(result.isValid).toBe(true);
       expect(result.warnings).toBeDefined();
@@ -71,7 +71,7 @@ describe('validateS3Key', () => {
 
     it('should allow Korean when configured', () => {
       const result = validateS3Key('한국어파일명.txt', {
-        languages: { allowKorean: true }
+        languages: { allowKorean: true },
       });
       expect(result.isValid).toBe(true);
       expect(result.warnings).toBeDefined();
@@ -80,7 +80,7 @@ describe('validateS3Key', () => {
     it('should allow CJK when configured', () => {
       const result = validateS3Key('写真/桜の花.jpg', {
         languages: { allowCJK: true },
-        specialChars: { allowSlash: true }
+        specialChars: { allowSlash: true },
       });
       expect(result.isValid).toBe(true);
     });
@@ -159,7 +159,7 @@ describe('sanitizeS3Key', () => {
 
   it('should preserve spaces when allowed', () => {
     const result = sanitizeS3Key('file name.txt', {
-      specialChars: { allowSpace: true }
+      specialChars: { allowSpace: true },
     });
     expect(result).toBe('file name.txt');
   });
