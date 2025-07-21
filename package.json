@@ -31,7 +31,6 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check-all": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test:run",
-    "prepare": "pnpm check-all && pnpm build",
     "prepack": "pnpm clean && pnpm build",
     "release": "pnpm dlx semantic-release",
     "release:dry": "pnpm dlx semantic-release --dry-run",
