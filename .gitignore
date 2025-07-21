@@ -84,3 +84,5 @@ temp/
 # Claude history
 .history
 .claude
+
+CLAUDE.md
